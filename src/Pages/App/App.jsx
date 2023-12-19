@@ -7,10 +7,9 @@ import { SignIn } from '../SignIn/SignIn';
 import { NotFound } from '../NotFound/NotFound';
 import { MyOrder } from '../MyOrder/MyOrder';
 import { Navbar } from '../../Components/Navbar/Navbar';
-import './App.css'
+
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
 
@@ -20,8 +19,8 @@ function App() {
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/clothes' element={<Home></Home>}></Route>
         <Route path='/electronics' element={<Home></Home>}></Route>
-        <Route path='/furnitures' element={<Home></Home>}></Route>
-        <Route path='/toys' element={<Home></Home>}></Route>
+        <Route path='/furniture' element={<Home></Home>}></Route>
+        <Route path='/toy' element={<Home></Home>}></Route>
         <Route path='/othes' element={<Home></Home>}></Route>
         <Route path='/my-account' element={<MyAccount></MyAccount>}></Route>
         <Route path='/my-order' element={<MyOrder></MyOrder>}></Route>
