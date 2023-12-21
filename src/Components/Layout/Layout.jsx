@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Card } from '../Card/Card'
 import { data } from 'autoprefixer'
+import { ProductDetail } from '../ProductDetail/ProductDetail';
 
 
 
@@ -37,16 +38,19 @@ export const Layout = () => {
   
   
   return (
-    <>
-      <div className='bg-orange-500	 w-80 m-auto'>
-        <input className='bg-yellow-300	w-full	' type="text" name="" id="" />
+    <div className='flex'>
+      <div className='	max-w-screen-lg m-auto'>
+        <div className='bg-orange-500	 w-80 m-auto'>
+          <input className='bg-yellow-300	w-full	' type="text" name="" id="" />
+        </div>
+        <div className='mt-5  grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4  sm:bg-orange-950	md:bg-amber-400	lg:bg-lime-400	xl:bg-teal-600	'>
+          {        
+            displayCard()
+          }
+        </div>
       </div>
-      <div className='mt-5  grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 '>
-        {        
-          displayCard()
-        }
-      </div>
-    </>
+      
+    </div>
   )
 }
 // gap-4 grid-cols-4  max-w-screen-lg place-content-center

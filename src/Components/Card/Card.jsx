@@ -1,12 +1,16 @@
 
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
+import {ShoppingCartContext} from "../../Context/Context"
 
 export const Card = (data) => {
-  console.log(data.data)
+
+  const {count , setCount} = useContext(ShoppingCartContext);
+  console.log(count)
+  
   return (
     <div className=' w-56 m-auto	 h-60 border-solid border-2  rounded-2xl	overflow-hidden		'>
       <figure className="relative h-4/5">
-        <div className="absolute right-1 top-1 p-0 bg-slate-200	font-semibold	   w-7 h-7 text-xl text-center rounded-2xl	hover:cursor-pointer ">+</div>
+        <div className="absolute right-1 top-1 p-0 bg-slate-200	font-semibold	   w-7 h-7 text-xl text-center rounded-2xl	hover:cursor-pointer " onClick={()=>setCount(count+1)}>+</div>
         <img className='h-full w-full rounded-2xl	' src={data.data.images[0]} alt={data.data.title} />
         <span className="bg-gray-500	 absolute bottom-0 left-0 m-2 py-0 px-1 rounded-2xl ">{data.data.category.name}</span>
       </figure>
