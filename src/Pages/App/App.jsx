@@ -22,7 +22,7 @@ function App() {
               <Route path='/electronics' element={<Home></Home>}></Route>
               <Route path='/furniture' element={<Home></Home>}></Route>
               <Route path='/toys' element={<Home></Home>}></Route>
-              <Route path='/othes' element={<Home></Home>}></Route>
+              <Route path='/others' element={<Home></Home>}></Route>
               <Route path='/my-account' element={<MyAccount></MyAccount>}></Route>
               <Route path='/my-order' element={<MyOrder></MyOrder>}></Route>
               <Route path='/my-orders' element={<MyOrders></MyOrders>}></Route>
