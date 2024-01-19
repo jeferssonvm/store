@@ -16,9 +16,8 @@ export const MyOrder = () => {
     const listBuy = ()=>{
     return orderHistory.map(shopping=>{
         shopping.deployList = false;
-        console.log(shopping)
         return(
-        <div id={shopping.id} onClick={()=>{setOpenBuy(true); setSelectBuy(shopping);}} className='flex flex-col 	'>
+        <div key={shopping.id} onClick={()=>{setOpenBuy(true); setSelectBuy(shopping);}} className='flex flex-col 	'>
           <div className='flex m-4 rounded-md w-72 overflow-hidden hover:cursor-pointer border-2 border-slate-400'>
             <p className=' bg-slate-300	w-7 flex justify-center items-center	font-semibold	 '>{positionInList=positionInList+1}</p>
             <div className='flex-1 px-3 bg-slate-100'>

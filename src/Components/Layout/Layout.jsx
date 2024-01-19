@@ -10,7 +10,7 @@ export const Layout = () => {
   const [cardsInfo, setCardInfo] =useState([]);
   const [wordFinder,setWordFinder] = useState("");
   const urlReal = window.location.pathname;
-  const urlRealClean = urlReal.substring(1)
+  const urlRealClean = urlReal.substring(16)
   
   const {openDetail, setOpenDetail,shoppingCartContent ,setShoppingCartContent} = useContext(ShoppingCartContext);
 
@@ -23,6 +23,7 @@ export const Layout = () => {
   const displayCard = () =>{
     // filtranos por categorias 
     let cardFilter; 
+ 
     if (urlRealClean.length != 0){
       if(urlRealClean==="others"){
         const categoryList = ["clothes","electronics","furniture","toys"];
