@@ -10,7 +10,7 @@ export const Layout = () => {
   const [cardsInfo, setCardInfo] =useState([]);
   const [wordFinder,setWordFinder] = useState("");
   const urlReal = window.location.pathname;
-  const urlRealClean = urlReal.substring(16)
+  const urlRealClean = urlReal.substring(1)
   
   const {openDetail, setOpenDetail,shoppingCartContent ,setShoppingCartContent} = useContext(ShoppingCartContext);
 
