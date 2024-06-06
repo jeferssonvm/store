@@ -20,6 +20,9 @@
         margin: auto;
         font-size: 20px;
     }
+    .login_error{
+        color: red;
+    }
     .login__inp-cont{
         position: relative;
     }
@@ -69,6 +72,17 @@
         font-weight: bold;
     }
 }
+.login__button[disabled]{
+    color: rgb(185, 185, 185);
+
+    border: 2px solid  rgb(185, 185, 185);
+    font-weight: 100;
+    cursor: default;
+}
+.login__button--disconnect{
+    margin: 10px;
+}
+
 .login__have-acount{
     span{
         cursor: pointer;

@@ -3,6 +3,15 @@ export const ShoppingCartContext = createContext();
 
 
 export const ShoppingCartProvaider = ({children}) => {
+  const [users, setUsers] = useState([]);
+  const [count , setCount]  = useState(0);
+  const [openDetail , setOpenDetail] = useState(false);
+  const [productDetail, setProductDetail] = useState(false);
+  const [shoppingCartContent ,setShoppingCartContent ] =useState(false);
+  const [productCard, setProductCard] =useState([]);
+  const [orderHistory , setOrderHistory] =useState([]);
+  const [sessionStart , setSessionStart] = useState(false)
+  const [loginUser, setLoginUSer] = useState({Active:false, LoginUser:{}});
 
     const pureba = [{
     Datos:{
@@ -18,38 +27,53 @@ export const ShoppingCartProvaider = ({children}) => {
       Name:"1jefersson",
       LastName:"1velasquez",
       Email:"1jeferson@gmail.com",
-      Password:"01234"
+      Password:"0123ss4"
     } ,
     orderHistory:[]
     }
   ]
-
+  
 
   useEffect(() => {
     if (localStorage.getItem("users")) {
       if (JSON.parse(localStorage.getItem("users")).length > 0) {
-        getUsers(JSON.parse(localStorage.getItem("users")));
-        
-
+        setUsers(JSON.parse(localStorage.getItem("users")));
       }
     }
+    return
   }, []);
+
+  useEffect(()=>{
+    const info= JSON.stringify(users)
+    localStorage.setItem('users', info)
+    
+  },[users])
+
+  const saveInfo= (info) =>{
+    console.log("saveInfo")
+    console.log(info)
+    const pruebaString= JSON.stringify(info)
+    localStorage.setItem('users', pruebaString)
+  }
 
   // const pruebaString= JSON.stringify(pureba)
   // localStorage.setItem('users', pruebaString)
-  // localStorage.removeItem('usuarios')
+  // localStorage.removeItem('users')
 
-  const [users, getUsers] = useState([]);
-  const [count , setCount]  = useState(0);
-  const [openDetail , setOpenDetail] = useState(false);
-  const [productDetail, setProductDetail] = useState(false);
-  const [shoppingCartContent ,setShoppingCartContent ] =useState(false);
-  const [productCard, setProductCard] =useState([]);
-  const [orderHistory , setOrderHistory] =useState([]);
-  const [sessionStart , setSessionStart] = useState(false)
+  
+ 
+  useEffect(()=>{
+    const updatedUsers = users.map(e =>{
+          if(e.Datos.Email === loginUser.LoginUser.Datos.Email){
 
-
-
+            return {...loginUser.LoginUser, orderHistory:[...orderHistory]}
+            
+          }
+          return e
+        })
+        saveInfo(updatedUsers)
+   
+  }, [orderHistory])
   return (
 
     <ShoppingCartContext.Provider value ={{
@@ -60,7 +84,8 @@ export const ShoppingCartProvaider = ({children}) => {
       shoppingCartContent ,setShoppingCartContent,
       orderHistory , setOrderHistory,
       sessionStart , setSessionStart,
-      users, getUsers
+      users, setUsers,
+      loginUser, setLoginUSer
 
     }}>
         {children}
@@ -68,9 +93,5 @@ export const ShoppingCartProvaider = ({children}) => {
   )
 }
 
-// const [todos, setTodos] = useState(() => {
-//   const todosFromStorage = window.localStorage.getItem('TODOS_V1')
-//   if (todosFromStorage) return JSON.parse(todosFromStorage)
-//   return []
-// })
+
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useContext } from 'react'
 import {ShoppingCartContext} from "../../Context/Context";
 
@@ -8,9 +8,11 @@ const changep = () =>{
 }
 
 export const MyOrder = () => {
-  const {orderHistory , setOrderHistory } = useContext(ShoppingCartContext);
+  const {orderHistory , setOrderHistory, loginUser, setLoginUSer  } = useContext(ShoppingCartContext);
   const [openBuy, setOpenBuy] =useState(false)
   const [selectBuy, setSelectBuy] = useState()
+
+
   let positionInList = 0;
 
     const listBuy = ()=>{
@@ -22,8 +24,8 @@ export const MyOrder = () => {
             <p className=' bg-slate-300	w-7 flex justify-center items-center	font-semibold	 '>{positionInList=positionInList+1}</p>
             <div className='flex-1 px-3 bg-slate-100'>
               <p>{shopping.buyDate}</p>
-              <p>Total de productos: <span>{shopping.buy.length}</span></p>
-              <p>Total costo: $<span>{shopping.totalPrice}</span></p>
+              <p>Ttotal product: <span>{shopping.buy.length}</span></p>
+              <p>total cost: $<span>{shopping.totalPrice}</span></p>
             </div>
           </div>
         </div>
@@ -56,7 +58,7 @@ export const MyOrder = () => {
   }
   return (
     <div className='flex flex-col'>
-      <h2 className='text-center	my-4 text-2xl	font-semibold	'>Historial de compras</h2>
+      <h2 className='text-center	my-4 text-2xl	font-semibold	'>Shopping history</h2>
       <div className='flex colun flex-col	m-auto'>
         {
           !openBuy?listBuy():dropdownList(selectBuy)

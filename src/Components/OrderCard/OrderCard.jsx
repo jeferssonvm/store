@@ -5,8 +5,13 @@ import "./orderCard.css"
 export const OrderCard = () => {
   const currentDate = new Date();
 
-  const {productCard, setProductCard,shoppingCartContent ,setShoppingCartContent,orderHistory , setOrderHistory } = useContext(ShoppingCartContext);
+  const {productCard, setProductCard,
+        shoppingCartContent ,setShoppingCartContent,
+        orderHistory , setOrderHistory, 
+        loginUser, setLoginUSer,
+        users, setUsers} = useContext(ShoppingCartContext);
   const [totalCost, setTotalCost] = useState(0)
+  const {} = useContext(ShoppingCartContext);
 
   const closeCart = ()=>{
     setShoppingCartContent (!shoppingCartContent);
@@ -21,10 +26,12 @@ export const OrderCard = () => {
   const sendOrder = (order) => {
     const currentDateStr = `${currentDate.getFullYear()} / ${(currentDate.getMonth() +1)} / ${currentDate.getDate()}`
     !orderHistory.length? setOrderHistory([{buy:order,buyDate:currentDateStr,id:orderHistory.length,totalPrice:totalCost}]):setOrderHistory([...orderHistory, {buy:order,buyDate:currentDateStr,id:orderHistory.length,totalPrice:totalCost}])
-    console.log(orderHistory)
-    setProductCard([])
+    const saveNewOrder = {...loginUser.LoginUser, orderHistory:[...orderHistory]}
+    setLoginUSer({...loginUser, LoginUser:{...saveNewOrder}})
     
+    setProductCard([])    
   }
+
   return (
     <aside className=' w-80 h-[calc(100vh+64px)] 	'>
         <div className='flex flex-col justify-around 	product-detail w-80 fixed min-h-96	bg-slate-200'>
@@ -53,7 +60,12 @@ export const OrderCard = () => {
               <p className='mx-auto'>
                 <span className='w-2/5'>Total:</span> <span className='w-3/5'>$ {totalCost}</span>
               </p>
-            <button className='w-11/12 text-white	bg-gray-950	mx-auto	h-10 rounded-xl font-bold' onClick={()=> sendOrder(productCard)} >COMPRAR</button>
+              {
+                loginUser.Active ?  
+                <button className='w-11/12 text-white	bg-gray-950	mx-auto	h-10 rounded-xl font-bold' onClick={()=> sendOrder(productCard)} >COMPRAR</button> :
+                <button className='w-11/12 text-black	mx-auto	h-10 rounded-xl font-bold cursor-auto	' >Inicia sesión para continuar</button>
+              }
+            
         </div>
 
     </aside>
